@@ -38,7 +38,10 @@ const LICENSE_KEY = useRuntimeConfig().public.ckeditorLicenseKey;
  * Unique ID that will be used to identify this document. E.g. you may use ID taken from your database.
  * Read more: https://ckeditor.com/docs/ckeditor5/latest/api/module_collaboration-core_config-RealTimeCollaborationConfig.html
  */
-const DOCUMENT_ID = '<YOUR_DOCUMENT_ID>';
+
+const props =defineProps({
+	documentId: String,
+})
 
 const CLOUD_SERVICES_TOKEN_URL = useRuntimeConfig().public.ckeditorCloudServicesTokenUrl;
 const CLOUD_SERVICES_WEBSOCKET_URL = useRuntimeConfig().public.ckeditorCloudServicesWebsocketUrl;
@@ -320,7 +323,7 @@ const config = computed(() => {
 			webSocketUrl: CLOUD_SERVICES_WEBSOCKET_URL
 		},
 		collaboration: {
-			channelId: DOCUMENT_ID
+			channelId: props.documentId
 		},
 		comments: {
 			editorConfig: {

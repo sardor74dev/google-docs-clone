@@ -21,7 +21,7 @@ export default defineEventHandler(async () => {
     },
     auth: {
       collaboration: {
-        "<YOUR_DOCUMENT_ID>": {
+        "*": {
           role: "writer",
           permissions: ["comment:modify_all"],
         },
