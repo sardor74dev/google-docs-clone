@@ -555,6 +555,19 @@ function onReady(editor) {
 
 	editorToolbar.value.appendChild(editor.ui.view.toolbar.element);
 	editorMenuBar.value.appendChild(editor.ui.view.menuBarView.element);
+
+	const annotationsUIs = editor.plugins.get('AnnotationsUIs');
+
+	function refreshDisplayMode() {
+		if (window.innerWidth < 1115) {
+			annotationsUIs.switchTo('inline');
+		} else {
+			annotationsUIs.switchTo('wideSidebar');
+		}
+	}
+
+	editor.ui.view.listenTo(window, 'resize', refreshDisplayMode);
+	refreshDisplayMode();
 }
 
 /**
@@ -606,3 +619,16 @@ function configUpdateAlert(config) {
 	}
 }
 </script>
+
+<style scoped>
+@media (max-width: 1115px) {
+	:deep(.editor-container__sidebar) {
+		min-width: 0;
+		width: 0;
+		visibility: hidden;
+	}
+	:deep(.ck-editor__editable) {
+		min-width: 0 !important;
+	}
+}
+</style>
